@@ -26,7 +26,7 @@ control 'cis-prevent-enabling-lock-screen-slide-show-18.1.1.2' do
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
     describe registry_key('HKLM\Software\Policies\Microsoft\Windows\Personalization') do
-        its('NoLockScreenCamera') { should eq 1 }
+        its('NoLockScreenSlideshow') { should eq 1 }
     end
 end
 
@@ -57,7 +57,7 @@ control 'cis-password-expiration-time-18.2.2' do
     tag cis: ['windows_2012r2:18.2.2']
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
-    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft\Services\AdmPwd') do
+    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd') do
         its('PwdExpirationProtectionEnabled') { should eq 1 }
     end
 end
@@ -70,8 +70,8 @@ control 'cis-password-expiration-time-18.2.3' do
     tag cis: ['windows_2012r2:18.2.3']
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
-    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft\Services\AdmPwd') do
-        its('PwdExpirationProtectionEnabled') { should eq 1 }
+    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd') do
+        its('AdmPwdEnabled') { should eq 1 }
     end
 end
 
@@ -85,7 +85,7 @@ control 'cis-password-settings-password-complexity-18.2.4' do
     tag cis: ['windows_2012r2:18.2.4']
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
-    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft\Services\AdmPwd') do
+    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd') do
         its('PasswordComplexity') { should eq 1 }
     end
 end
@@ -100,7 +100,7 @@ control 'cis-password-settings-password-length-18.2.5' do
     tag cis: ['windows_2012r2:18.2.5']
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
-    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft\Services\AdmPwd') do
+    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd') do
         its('PasswordLength') { should eq 1 }
     end
 end
@@ -115,7 +115,7 @@ control 'cis-password-settings-password-age-18.2.6' do
     tag cis: ['windows_2012r2:18.2.6']
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
-    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft\Services\AdmPwd') do
+    describe registry_key('HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd') do
         its('PasswordAgeDays') { should eq 1 }
     end
 end
@@ -133,20 +133,20 @@ control 'cis-automatic-logon-18.3.1' do
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
     describe registry_key('HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon') do
-        its('AutoAdminLogon') { should eq 1 }
+        its('AutoAdminLogon') { should eq 0 }
     end
 end
 
 control 'cis-ip-routing-protection-level-18.3.2' do
     impact 0.7
-    title '18.2.6 Ensure MSS: (DisableIPSourceRouting IPv6) IP source routing
+    title '18.3.2 Ensure MSS: (DisableIPSourceRouting IPv6) IP source routing
     protection level (protects against packet spoofing) is set to Enabled:
     Highest protection, source routing is completely disabled' 
     desc 'Ensure MSS: (DisableIPSourceRouting IPv6) IP source routing
     protection level (protects against packet spoofing) is set to Enabled:
     Highest protection, source routing is completely disabled' 
 
-    tag cis: ['windows_2012r2:18.3.1']
+    tag cis: ['windows_2012r2:18.3.2']
     ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
 
     describe registry_key('HKLM\System\CurrentControlSet\Services\Tcpip6\Parameters') do
